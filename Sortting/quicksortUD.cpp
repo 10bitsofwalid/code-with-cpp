@@ -17,7 +17,7 @@ int partition(int arr[], int low, int high){
         }
 
         //find the element samller then the pivot
-        while(j >= low && arr[j] >= pivot){
+        while(j >= low && arr[j] > pivot){
             j--;
         }
 
