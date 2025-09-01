@@ -2,13 +2,37 @@
 using namespace std;
 
 void bfs(int start, int graph[10][10], int nodes){
-    
+
+    int visited[10] = {0};
+    queue<int> q;
+
+    visited[start] = 1;
+    q.push(start);
+
+    cout << "BFS Traversal: ";
+
+    while (!q.empty()){
+        int current = q.front();
+        q.pop();
+        cout << current << " ";
+
+        for(int neighbour=0; neighbour<nodes; neighbour++){
+            if(graph[current][neighbour] == 1 && visited[neighbour] == 0){
+                visited[neighbour] = 1;
+                q.push(neighbour);
+            }
+        }
+
+    }
+
+    cout << endl;
+
 }
 
 int main(){
 
     int nodes, edges;
-    int graph[10][10] = 0;
+    int graph[10][10] = {0};
 
     cout << "Enter the number of nodes: ";
     cin >> nodes;
@@ -27,5 +51,9 @@ int main(){
     int start;
     cout << "Enter the starting node: ";
     cin >> start;
+
+    bfs(start, graph, nodes);
+
+    return 0;
     
 }
