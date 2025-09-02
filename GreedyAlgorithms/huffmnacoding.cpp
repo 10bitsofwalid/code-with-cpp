@@ -1,6 +1,40 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+struct Node{
+
+    char ch;
+    int freq;
+    Node* left;
+    Node* right;
+
+    Node(char c, int f){
+        ch = c;
+        freq = f;
+        left = right = NULL;
+    }
+
+};
+
+struct compare{
+
+    bool operator()(Node* a, Node* b){
+        return a->freq > b->freq;
+    }
+
+};
+
+void printCodes(Node* root, string code){
+    if(root = NULL) return;
+    if(root->ch !='$'){
+        cout << root->ch << " : " << code << endl;
+    }
+
+    printCodes(root->left, code + "0");
+    printCodes(root->right, code + "1");
+
+}
+
 int main(){
 
     int n;
@@ -20,7 +54,7 @@ int main(){
         cin >> f[i];
     }
 
-    priority_queue<Node*, vestor<Node*>, compare> pq;
+    priority_queue<Node*, vector<Node*>, compare> pq;
 
     for(int i=0; i<n; i++){
         pq.push(new Node(chars[i], f[i]));
@@ -38,7 +72,7 @@ int main(){
 
     }
 
-    node* root = pq.top();
+    Node* root = pq.top();
     cout << "\n" << "Huffman Codes: ";
     printCodes(root, " ");
 
