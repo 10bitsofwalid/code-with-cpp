@@ -1,6 +1,19 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+void dfs(int c, int graph[10][10], int visited[10], int nodes){
+
+    visited[c] = 1;
+    cout << c << " ";
+
+    for(int n=0; n<nodes; n++){
+        if(graph[c][n] == 1 && visited[n] == 0){
+            dfs(n, graph, visited, nodes);
+        }
+    }
+
+}
+
 int main(){
 
     int nodes, edges;
@@ -26,5 +39,8 @@ int main(){
     cin >> start;
 
     cout << "DFS Traversal: ";
+    dfs(start, graph, visited, nodes);
+
+    return 0;
 
 }
